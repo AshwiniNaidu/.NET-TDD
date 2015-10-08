@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBinstance.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameException.cs" />
     <Compile Include="IGameRepository.cs" />

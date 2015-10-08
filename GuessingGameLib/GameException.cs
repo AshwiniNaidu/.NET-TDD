@@ -7,11 +7,9 @@ namespace GuessingGameLib
 {
     public class GameException : ApplicationException
     {
-        public GameException(string message)
-            : base(message)
+        public GameException(string message) : base(message)
         {
 
         }
     }
 }
-

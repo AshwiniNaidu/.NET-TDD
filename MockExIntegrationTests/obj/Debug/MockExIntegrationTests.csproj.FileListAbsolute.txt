@@ -1,0 +1,5 @@
+C:\Users\prabhu.E4LJBSL3AUMKO\Dropbox\TDD_Dot_NET\Oct_2015\Day03\MockExIntegrationTests\bin\Debug\MockExIntegrationTests.dll
+C:\Users\prabhu.E4LJBSL3AUMKO\Dropbox\TDD_Dot_NET\Oct_2015\Day03\MockExIntegrationTests\bin\Debug\MockExIntegrationTests.pdb
+C:\Users\prabhu.E4LJBSL3AUMKO\Dropbox\TDD_Dot_NET\Oct_2015\Day03\MockExIntegrationTests\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\prabhu.E4LJBSL3AUMKO\Dropbox\TDD_Dot_NET\Oct_2015\Day03\MockExIntegrationTests\obj\Debug\MockExIntegrationTests.dll
+C:\Users\prabhu.E4LJBSL3AUMKO\Dropbox\TDD_Dot_NET\Oct_2015\Day03\MockExIntegrationTests\obj\Debug\MockExIntegrationTests.pdb

@@ -10,4 +10,3 @@ namespace GuessingGameLib
         bool StoreInformation(string name, int target, int attempts);
     }
 }
-

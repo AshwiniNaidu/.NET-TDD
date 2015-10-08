@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GuessingGameLib;
+using Moq;
 
 namespace GuessingGameTest
 {
@@ -12,8 +13,7 @@ namespace GuessingGameTest
     {
         public Game game { get; set; }
         [TestInitialize]
-        public void SetUp()
-        {
+        public void SetUp() {
             int limit = 100;
             game = new Game(limit);
         }
@@ -78,8 +78,7 @@ namespace GuessingGameTest
         }
         [TestMethod]
         [ExpectedException(typeof(GameException))]
-        public void TestInvalidInput()
-        {
+        public void TestInvalidInput(){
             game.Play(-1);
         }
         [TestMethod]
@@ -124,7 +123,7 @@ namespace GuessingGameTest
             game.Play(80);
             game.Play(77);
             game.Reset();
-            Assert.AreEqual(null, game.Message);
+            Assert.AreEqual(null,game.Message);
         }
         [TestMethod]
         public void TestRecheckTargetForANewGame()
@@ -133,7 +132,7 @@ namespace GuessingGameTest
             game.Play(101);
             game.Reset();
             Assert.IsTrue(game.Target >= 1 && game.Target < 100);
-        }
+         }
         [TestMethod]
         [ExpectedException(typeof(GameException))]
         public void TestPlayANewGameWhenTheExistingGameIsInProgress()
@@ -153,9 +152,31 @@ namespace GuessingGameTest
             game.StoreResults("Ram");
         }
         [TestMethod]
+        public void TestStoreResultsAfterGameIsOver2()
+        {
+            Mock<IGameRepository> mockRepo = new Mock<IGameRepository>();
+            game.GameRepo = mockRepo.Object;
+            game.Target = 77;
+            game.Play(50);
+            game.Play(75);
+            game.Play(80);
+            game.Play(77);
+            string name = "Sam";
+            game.StoreResults(name);
+            //mockRepo.Verify(meth => meth.StoreInformation("Sam", 77, 4), 
+            //                Times.Once);
+            mockRepo.Verify(meth => meth.StoreInformation(It.IsAny<string>(),
+                It.IsAny<int>(), It.IsAny<int>()),
+                          Times.Once);
+        }
+
+        [TestMethod]
         public void TestStoreResultsAfterGameIsOver()
         {
-            game.GameRepo = new MockGameRepository();
+            Mock<IGameRepository> mockRepo = new Mock<IGameRepository>();
+            game.GameRepo = mockRepo.Object;
+            mockRepo.Setup(meth => meth.StoreInformation("Sam", 77, 4)).Returns(true);
+            //game.GameRepo = new MockGameRepository();
             game.Target = 77;
             game.Play(50);
             game.Play(75);
@@ -166,12 +187,10 @@ namespace GuessingGameTest
             Assert.IsTrue(stored);
         }
     }
-    class MockGameRepository : IGameRepository
-    {
+    class MockGameRepository : IGameRepository {
         public bool StoreInformation(string name, int target, int attempts)
         {
             return true;
         }
     }
 }
-
